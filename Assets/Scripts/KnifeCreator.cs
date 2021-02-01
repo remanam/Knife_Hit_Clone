@@ -23,27 +23,33 @@ public class KnifeCreator : MonoBehaviour
             rb.AddForce(throwForce, ForceMode2D.Impulse);
             rb.gravityScale = 1;
             // TODO. Decrement number of aviable knifes
+            GameController.Instance.GameUI.DecrementDisplayedKnifeCount();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        GetComponent<ParticleSystem>().Play();
+
         if (isActive == false)
             return;
 
         isActive = false;
 
         if (collision.gameObject.tag == "Log") {
-            Debug.Log("Knife Collided with Log");
             rb.velocity = new Vector2(0, 0);
             rb.bodyType = RigidbodyType2D.Kinematic;
             this.transform.SetParent(collision.collider.transform);
 
             knifeCollider.offset = new Vector2(knifeCollider.offset.x, -0.4f);
             knifeCollider.size = new Vector2(knifeCollider.size.x, 1.8f);
+
+            GameController.Instance.OnSuccessfulKnifeHit();
         }
         else if (collision.collider.tag == "Knife") {
             rb.velocity = new Vector2(rb.velocity.x, -2);
+
+            GameController.Instance.StartGameOverSequence(false);
         }
     }
 }
