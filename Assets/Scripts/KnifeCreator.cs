@@ -29,13 +29,15 @@ public class KnifeCreator : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GetComponent<ParticleSystem>().Play();
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ps.Play();
 
         if (isActive == false)
             return;
 
         isActive = false;
 
+        // Нож врезался в бревно
         if (collision.gameObject.tag == "Log") {
             rb.velocity = new Vector2(0, 0);
             rb.bodyType = RigidbodyType2D.Kinematic;
@@ -44,8 +46,12 @@ public class KnifeCreator : MonoBehaviour
             knifeCollider.offset = new Vector2(knifeCollider.offset.x, -0.4f);
             knifeCollider.size = new Vector2(knifeCollider.size.x, 1.8f);
 
+            
+                
+
             GameController.Instance.OnSuccessfulKnifeHit();
         }
+        // Нож ударился о другой нож
         else if (collision.collider.tag == "Knife") {
             rb.velocity = new Vector2(rb.velocity.x, -2);
 

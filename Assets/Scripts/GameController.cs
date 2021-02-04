@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance { get; private set; }
 
-    [SerializeField] private int knifeCount;
+    public int knifeCount;
 
     [Header("KnifeSpawning")]
     [SerializeField] private Vector2 knifeSpawnPosition;
@@ -56,10 +56,13 @@ public class GameController : MonoBehaviour
     private IEnumerator GameOverSequenceCoroutine(bool win)
     {
         if (win == true) {
+            Time.timeScale = 0;
             yield return new WaitForSecondsRealtime(0.5f);
             RestartGame();
         }
         else {
+            Time.timeScale = 0;
+            yield return new WaitForSecondsRealtime(0.5f);
             GameUI.ShowRestartButton();
             Debug.Log("Restartbutton called");
         }
@@ -67,6 +70,7 @@ public class GameController : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single); // Перезагружаем текущую сцену
     }
 }
