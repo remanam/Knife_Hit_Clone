@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,11 +17,15 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject knifeObject;
 
+    public TextMeshProUGUI Score;
+
     public GameUI GameUI { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+
+        Score.text = "0";
 
         GameUI = GetComponent<GameUI>();
     }
@@ -34,13 +39,17 @@ public class GameController : MonoBehaviour
     private void SpawnKnife()
     {
         knifeCount--;
-        Instantiate(knifeObject, knifeSpawnPosition, Quaternion.identity);
+        GameObject knifePref = Instantiate(knifeObject, knifeSpawnPosition, Quaternion.identity);
+        knifePref.GetComponent<Animator>().SetBool("isNeedToFade", true);
+
     }
 
     public void OnSuccessfulKnifeHit()
     {
         if (knifeCount > 0) {
             SpawnKnife();
+            // Обновляем сохраненные общие очки
+            SaveManager.SaveCurrency(Convert.ToInt32(Score));
         }
         else {
             StartGameOverSequence(true);
@@ -56,14 +65,17 @@ public class GameController : MonoBehaviour
     private IEnumerator GameOverSequenceCoroutine(bool win)
     {
         if (win == true) {
-            Time.timeScale = 0;
+
+
             yield return new WaitForSecondsRealtime(0.5f);
+            Time.timeScale = 0;
             RestartGame();
         }
         else {
-            Time.timeScale = 0;
+            
             yield return new WaitForSecondsRealtime(0.5f);
-            GameUI.ShowRestartButton();
+            Time.timeScale = 0;
+            GameUI.ShowButtons();
             Debug.Log("Restartbutton called");
         }
     }
@@ -72,5 +84,10 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single); // Перезагружаем текущую сцену
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

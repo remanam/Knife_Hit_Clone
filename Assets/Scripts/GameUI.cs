@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject toMainMenuButton;
 
     [Header("Knife Count Display")]
     [SerializeField] private GameObject panelKnives;
@@ -16,9 +17,10 @@ public class GameUI : MonoBehaviour
 
     
     
-    public void ShowRestartButton()
+    public void ShowButtons()
     {
         restartButton.SetActive(true);
+        toMainMenuButton.SetActive(true);
     }
 
     public void SetInitialDisplayedKnifeCount(int count)
