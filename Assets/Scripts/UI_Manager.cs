@@ -7,17 +7,17 @@ using UnityEngine.SceneManagement;
 public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currency;
+    [SerializeField] private TextMeshProUGUI highScore;
 
 
     private void Awake()
     {
         currency.text = PlayerPrefs.GetInt("Coins").ToString();
-    }
 
-    void Start()
-    {
+        highScore.text = PlayerPrefs.GetInt("Highscore").ToString();
 
     }
+
 
     public void StartGame()
     {

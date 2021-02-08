@@ -18,16 +18,17 @@ public class LogRotation : MonoBehaviour
     private WheelJoint2D wheelJoint;
     private JointMotor2D motor;
 
-    private AudioSource audio;
-
 
     private void Awake()
     {
         wheelJoint = GetComponent<WheelJoint2D>();
         motor = new JointMotor2D();
+
         StartCoroutine(PlayRotationPattern());
 
-        audio = transform.GetChild(0).gameObject.GetComponent<AudioSource>();
+       
+
+
 
         GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
     }
@@ -51,13 +52,6 @@ public class LogRotation : MonoBehaviour
 
 
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Entered collision");
-        audio.Play();
-
     }
 
 

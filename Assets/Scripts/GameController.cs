@@ -17,12 +17,18 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject knifeObject;
 
+
     public TextMeshProUGUI Score;
+
+    //Чтоб передавать общее количество очков за игру
+    public int sum = 0;
 
     public GameUI GameUI { get; private set; }
 
     private void Awake()
     {
+        Time.timeScale = 1;
+
         Instance = this;
 
         Score.text = "0";
@@ -38,9 +44,13 @@ public class GameController : MonoBehaviour
 
     private void SpawnKnife()
     {
+
+        
         knifeCount--;
         GameObject knifePref = Instantiate(knifeObject, knifeSpawnPosition, Quaternion.identity);
         knifePref.GetComponent<Animator>().SetBool("isNeedToFade", true);
+
+ 
 
     }
 
@@ -48,10 +58,21 @@ public class GameController : MonoBehaviour
     {
         if (knifeCount > 0) {
             SpawnKnife();
-            // Обновляем сохраненные общие очки
-            SaveManager.SaveCurrency(Convert.ToInt32(Score));
+
+            // При каждом попадании обновляем общее количество валюты
+           SaveManager.SaveCurrency(Convert.ToInt32(Score));
+
+
         }
         else {
+            Debug.Log(PlayerPrefs.GetInt("Highscore"));
+            //Проверяем Highscore
+            if (PlayerPrefs.GetInt("Highscore") < Convert.ToInt32(Score.text))
+                SaveManager.UpdateHighscore(Convert.ToInt32(Score.text));
+
+            //Разрушаем LogObject
+            LogProperties.Instance.destroyLog();
+
             StartGameOverSequence(true);
             Debug.Log("Won the game!");
         }
@@ -65,9 +86,11 @@ public class GameController : MonoBehaviour
     private IEnumerator GameOverSequenceCoroutine(bool win)
     {
         if (win == true) {
+            //Вибрация
+            Handheld.Vibrate();
 
 
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(1f);
             Time.timeScale = 0;
             RestartGame();
         }

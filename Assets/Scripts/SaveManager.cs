@@ -15,6 +15,11 @@ public class SaveManager : MonoBehaviour
         
     }
 
+    public static void UpdateHighscore(int newHighscore)
+    {
+        PlayerPrefs.SetInt("Highscore", newHighscore);
+    }
+
     public static void SaveCurrency(int currencyToAdd)
     {
         coinsBalance = PlayerPrefs.GetInt("Coins");

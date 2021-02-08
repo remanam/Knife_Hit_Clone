@@ -7,6 +7,8 @@ public class KnifeCreator : MonoBehaviour
 {
     [SerializeField] private Vector2 throwForce;
 
+
+
     private bool isActive = true;
 
     private Rigidbody2D rb;
@@ -17,11 +19,12 @@ public class KnifeCreator : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         knifeCollider = GetComponent<BoxCollider2D>();
-
+        
     }
 
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0) == true && isActive == true && GameController.Instance.knifeCount >= 0) {
             rb.AddForce(throwForce, ForceMode2D.Impulse);
             rb.gravityScale = 1;
@@ -30,15 +33,14 @@ public class KnifeCreator : MonoBehaviour
             GetComponent<AudioSource>().Play();
 
             Debug.Log(GameController.Instance.knifeCount);
-            
+
             GameController.Instance.GameUI.DecrementDisplayedKnifeCount();
+
+            
         }
     }
 
-    //Animator stop animation
-    private void OnCreateFinish()
-    {
-    }
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,18 +66,22 @@ public class KnifeCreator : MonoBehaviour
             int add;
             add = Convert.ToInt32(GameController.Instance.Score.text) + 1;
             GameController.Instance.Score.text = add.ToString();
-             
 
-            
-                
+
+
+            //Вибрация
+            Handheld.Vibrate();
+
 
             GameController.Instance.OnSuccessfulKnifeHit();
+
         }
         // Нож ударился о другой нож
-        else if (collision.collider.tag == "Knife") {
+        else if (collision.collider.tag == "Knife" && collision.collider.tag == "KnifeInLog") {
             rb.velocity = new Vector2(rb.velocity.x, -2);
 
             GameController.Instance.StartGameOverSequence(false);
+            Handheld.Vibrate();
         }
     }
 }
