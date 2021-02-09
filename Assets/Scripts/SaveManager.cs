@@ -10,14 +10,12 @@ public class SaveManager : MonoBehaviour
     public static int highScore;
     public static int[] openedlevels;
 
-    private void Awake()
-    {
-        
-    }
+
 
     public static void UpdateHighscore(int newHighscore)
     {
         PlayerPrefs.SetInt("Highscore", newHighscore);
+
     }
 
     public static void SaveCurrency(int currencyToAdd)
@@ -26,5 +24,6 @@ public class SaveManager : MonoBehaviour
         coinsBalance += currencyToAdd;
 
         PlayerPrefs.SetInt("Coins", coinsBalance);
+        
     }
 }

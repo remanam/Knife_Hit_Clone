@@ -24,7 +24,7 @@ public class KnifeCreator : MonoBehaviour
 
     private void Update()
     {
-
+        // Бросок ножа
         if (Input.GetMouseButtonDown(0) == true && isActive == true && GameController.Instance.knifeCount >= 0) {
             rb.AddForce(throwForce, ForceMode2D.Impulse);
             rb.gravityScale = 1;
@@ -51,6 +51,7 @@ public class KnifeCreator : MonoBehaviour
         if (isActive == false)
             return;
 
+        //Чтобы нож ударялся о бревно 1 раз
         isActive = false;
 
         // Нож врезался в бревно
@@ -72,14 +73,15 @@ public class KnifeCreator : MonoBehaviour
             //Вибрация
             Handheld.Vibrate();
 
-
+            //GameController создаёт новый нож, либо если нож последний - Win
             GameController.Instance.OnSuccessfulKnifeHit();
 
         }
         // Нож ударился о другой нож
-        else if (collision.collider.tag == "Knife" && collision.collider.tag == "KnifeInLog") {
+        else if (collision.collider.tag == "Knife" || collision.collider.tag == "KnifeInLog") {
             rb.velocity = new Vector2(rb.velocity.x, -2);
 
+            // GameOver
             GameController.Instance.StartGameOverSequence(false);
             Handheld.Vibrate();
         }

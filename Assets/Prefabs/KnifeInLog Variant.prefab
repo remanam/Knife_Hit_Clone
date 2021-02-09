@@ -34,7 +34,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 5.91}
+  m_Offset: {x: 0, y: -1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -68,7 +68,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2338680779972860537, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2550064277816209612, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_Pivot.x
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2550064277816209612, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.91
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2550064277816209612, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2673871636413291120, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_FlipY
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2673871636413291120, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
       propertyPath: m_Sprite
@@ -174,7 +174,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnifeSprite
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 211709901269735833, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
+    - {fileID: 4449978246388417488, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a37efd1b415d1d1409e34ce4aa3f9f9b, type: 3}
 --- !u!1 &6876656591485335098 stripped
 GameObject:

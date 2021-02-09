@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         
         knifeCount--;
         GameObject knifePref = Instantiate(knifeObject, knifeSpawnPosition, Quaternion.identity);
-        knifePref.GetComponent<Animator>().SetBool("isNeedToFade", true);
+        knifePref.transform.GetChild(0).GetComponent<Animator>().SetBool("isNeedToFade", true);
 
  
 
@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
             //Проверяем Highscore
             if (PlayerPrefs.GetInt("Highscore") < Convert.ToInt32(Score.text))
                 SaveManager.UpdateHighscore(Convert.ToInt32(Score.text));
+
 
             //Разрушаем LogObject
             LogProperties.Instance.destroyLog();

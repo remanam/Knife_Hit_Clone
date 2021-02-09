@@ -23,7 +23,10 @@ public class LogProperties : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Entered collision");
-        audioHit.Play();
+        if (collision.collider.tag == "Knife") {
+
+            audioHit.Play();
+        }
 
     }
 

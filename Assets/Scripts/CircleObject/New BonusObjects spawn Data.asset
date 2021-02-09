@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c1ce4a391579b4cae39a1df6d68eb9, type: 3}
   m_Name: New BonusObjects spawn Data
   m_EditorClassIdentifier: 
-  knifeInLogCount: 3
+  minimalKnifeCount: 1
+  maximumKnifeCount: 3
   knifeInLogChance: 50
-  appleInLogCount: 3
-  appleInLogChance: 50
+  appleInLogCount: 5
+  appleInLogChance: 255
