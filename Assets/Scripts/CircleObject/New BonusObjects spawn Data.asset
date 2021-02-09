@@ -15,5 +15,5 @@ MonoBehaviour:
   minimalKnifeCount: 1
   maximumKnifeCount: 3
   knifeInLogChance: 50
-  appleInLogCount: 5
-  appleInLogChance: 255
+  appleInLogCount: 1
+  appleInLogChance: 35

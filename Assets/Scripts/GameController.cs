@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject knifeObject;
 
+    [SerializeField] private GameObject winText;
+
 
     public TextMeshProUGUI Score;
 
@@ -71,8 +73,12 @@ public class GameController : MonoBehaviour
                 SaveManager.UpdateHighscore(Convert.ToInt32(Score.text));
 
 
+
             //Разрушаем LogObject
             LogProperties.Instance.destroyLog();
+
+            winText.SetActive(true);
+            winText.GetComponent<Animation>().Play("WinAnimation");
 
             StartGameOverSequence(true);
             Debug.Log("Won the game!");
@@ -91,7 +97,7 @@ public class GameController : MonoBehaviour
             Handheld.Vibrate();
 
 
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(1.2f);
             Time.timeScale = 0;
             RestartGame();
         }
@@ -107,7 +113,7 @@ public class GameController : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single); // Перезагружаем текущую сцену
+        SceneManager.LoadScene(1, LoadSceneMode.Single); // Перезагружаем текущую сцену
     }
 
     public void ToMainMenu()
