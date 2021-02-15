@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
     {
         if (win == true) {
             //Вибрация
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
 
 
             yield return new WaitForSecondsRealtime(1.2f);

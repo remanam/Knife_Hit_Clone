@@ -5863,19 +5863,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPattern:
-  - speed: 250
+  - speed: 50
     duration: 1
   - speed: -100
     duration: 2
-  - speed: -300
+  - speed: -50
     duration: 3
   - speed: 100
     duration: 1
-  - speed: -250
+  - speed: -25
     duration: 3
-  - speed: 200
+  - speed: 80
     duration: 2
-  - speed: 350
+  - speed: 200
     duration: 1.5
 --- !u!50 &1346909359
 Rigidbody2D:

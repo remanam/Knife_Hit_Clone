@@ -71,7 +71,7 @@ public class KnifeCreator : MonoBehaviour
 
 
             //Вибрация
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
 
             //GameController создаёт новый нож, либо если нож последний - Win
             GameController.Instance.OnSuccessfulKnifeHit();
@@ -83,7 +83,9 @@ public class KnifeCreator : MonoBehaviour
 
             // GameOver
             GameController.Instance.StartGameOverSequence(false);
-            Handheld.Vibrate();
+
+            //Вибрация
+            //Handheld.Vibrate();
         }
     }
 }
